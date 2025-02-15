@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .fact {
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fun Fact</h1>
+        <div id="fact" class="fact"></div>
+        <button id="generate-button">Generate Another Fun Fact</button>
+    </div>
+    <script>
+        const button = document.getElementById('generate-button');
+        let moveCount = 0;
+
+        button.addEventListener('mouseover', () => {
+            if (moveCount < 3) {
+                const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+                const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+                button.style.position = 'absolute';
+                button.style.left = `${randomX}px`;
+                button.style.top = `${randomY}px`;
+                moveCount++;
+            }
+        });
+
+        // Function to display a random fact
+        function displayRandomFact() {
+            const facts = [
+                "Earth is the only planet known to support life.",
+                "About 71% of Earth's surface is covered by water.",
+                "Mount Everest is the tallest mountain on Earth.",
+                "The Mariana Trench is the deepest part of the ocean.",
+                "Earth's atmosphere is composed of 78% nitrogen."
+            ];
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            document.getElementById('fact').innerText = facts[randomIndex];
+        }
+
+        // Initial fact display
+        displayRandomFact();
+    </script>
+</body>
+</html>
 
